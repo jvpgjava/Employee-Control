@@ -41,7 +41,7 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeRequests()
                 .requestMatchers("/api/auth/**").permitAll()  // Permitir acesso sem autenticação
-                .anyRequest().authenticated()  // Exige autenticação para o resto
+                .anyRequest().authenticated()  // Exige autenticação
                 .and()
                 .formLogin().disable()  // Desabilita login padrão
                 .httpBasic().disable();
