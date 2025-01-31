@@ -1,17 +1,19 @@
 package com.employeecontrol.model;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "employess") //Nome do banco
-@Data //Pra gerar getter, setter e toSring()
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "employees")
 public class Employee {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto incremento no banco
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -20,7 +22,10 @@ public class Employee {
     @Column(unique = true, nullable = false)
     private String cpf;
 
-    private String position;
-    private String department;
+    private String position; // Cargo
 
+    private String department; // Departamento
+
+    private LocalDate hiringDate; // Data de contratação
 }
+
