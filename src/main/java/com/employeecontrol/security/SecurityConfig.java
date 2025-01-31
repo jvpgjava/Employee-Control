@@ -22,30 +22,5 @@ public class SecurityConfig {
         this.userDetailsService = userDetailsService;
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder())
-                .and()
-                .build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .requestMatchers("/api/auth/**").permitAll()  // Permitir acesso sem autenticação
-                .anyRequest().authenticated()  // Exige autenticação
-                .and()
-                .formLogin().disable()  // Desabilita login padrão
-                .httpBasic().disable();
-
-        return http.build();
     }
 }
